@@ -14,6 +14,10 @@
 		5A6747CF290F0F4F00C7149C /* SongPeacockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6747CE290F0F4F00C7149C /* SongPeacockTests.swift */; };
 		5A6747D9290F0F4F00C7149C /* SongPeacockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6747D8290F0F4F00C7149C /* SongPeacockUITests.swift */; };
 		5A6747DB290F0F4F00C7149C /* SongPeacockUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6747DA290F0F4F00C7149C /* SongPeacockUITestsLaunchTests.swift */; };
+		5A6747E8290F0FDC00C7149C /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6747E7290F0FDC00C7149C /* SpeechRecognitionManager.swift */; };
+		5A6747EB29106E4100C7149C /* SongInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6747EA29106E4100C7149C /* SongInfo.swift */; };
+		5A6747ED291071E600C7149C /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6747EC291071E600C7149C /* GameView.swift */; };
+		5A6747EF2910827C00C7149C /* SentenceRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6747EE2910827C00C7149C /* SentenceRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,11 @@
 		5A6747D4290F0F4F00C7149C /* SongPeacockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SongPeacockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A6747D8290F0F4F00C7149C /* SongPeacockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPeacockUITests.swift; sourceTree = "<group>"; };
 		5A6747DA290F0F4F00C7149C /* SongPeacockUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPeacockUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5A6747E7290F0FDC00C7149C /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
+		5A6747E9291018CF00C7149C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5A6747EA29106E4100C7149C /* SongInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfo.swift; sourceTree = "<group>"; };
+		5A6747EC291071E600C7149C /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		5A6747EE2910827C00C7149C /* SentenceRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +104,12 @@
 		5A6747BB290F0F4E00C7149C /* SongPeacock */ = {
 			isa = PBXGroup;
 			children = (
+				5AFF51CC291A8910006BF1DF /* Models */,
+				5AFF51CB291A8904006BF1DF /* Recognition */,
+				5A6747E9291018CF00C7149C /* Info.plist */,
 				5A6747BC290F0F4E00C7149C /* SongPeacockApp.swift */,
 				5A6747BE290F0F4E00C7149C /* ContentView.swift */,
+				5A6747EC291071E600C7149C /* GameView.swift */,
 				5A6747C0290F0F4F00C7149C /* Assets.xcassets */,
 				5A6747C2290F0F4F00C7149C /* SongPeacock.entitlements */,
 				5A6747C3290F0F4F00C7149C /* Preview Content */,
@@ -127,6 +140,23 @@
 				5A6747DA290F0F4F00C7149C /* SongPeacockUITestsLaunchTests.swift */,
 			);
 			path = SongPeacockUITests;
+			sourceTree = "<group>";
+		};
+		5AFF51CB291A8904006BF1DF /* Recognition */ = {
+			isa = PBXGroup;
+			children = (
+				5A6747E7290F0FDC00C7149C /* SpeechRecognitionManager.swift */,
+				5A6747EE2910827C00C7149C /* SentenceRecognizer.swift */,
+			);
+			path = Recognition;
+			sourceTree = "<group>";
+		};
+		5AFF51CC291A8910006BF1DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5A6747EA29106E4100C7149C /* SongInfo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +289,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A6747EB29106E4100C7149C /* SongInfo.swift in Sources */,
+				5A6747E8290F0FDC00C7149C /* SpeechRecognitionManager.swift in Sources */,
 				5A6747BF290F0F4E00C7149C /* ContentView.swift in Sources */,
+				5A6747EF2910827C00C7149C /* SentenceRecognizer.swift in Sources */,
 				5A6747BD290F0F4E00C7149C /* SongPeacockApp.swift in Sources */,
+				5A6747ED291071E600C7149C /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +453,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SongPeacock/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Have a song to sing to";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Recognize the words sung";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Recognize the words sung";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -429,7 +467,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
@@ -437,7 +475,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.CoolYellowOwl.SongPeacock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,6 +497,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SongPeacock/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Have a song to sing to";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Recognize the words sung";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Recognize the words sung";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -467,7 +511,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
@@ -475,7 +519,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.CoolYellowOwl.SongPeacock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
