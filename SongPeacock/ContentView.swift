@@ -7,7 +7,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if speechRecognitionManager.isRecognizing {
-                GameView(gameEngine: .init(song: Songs.iWantItThatWay))
+                GameView(song: Songs.iWantItThatWay)
                     .environmentObject(speechRecognitionManager)
             } else {
                 switch speechRecognitionManager.authorizationStatus {

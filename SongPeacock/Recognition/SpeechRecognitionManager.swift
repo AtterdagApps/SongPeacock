@@ -13,7 +13,6 @@ class SpeechRecognitionManager: NSObject, ObservableObject {
     @Published private(set) var isRecognizing = false
     private let audioEngine = AVAudioEngine()
     private var recognitionTasks = [SFSpeechRecognitionTask]()
-    private var useFirstRecognizer = true
 
     func requestAuthorization() {
         SFSpeechRecognizer.requestAuthorization { authStatus in
@@ -28,6 +27,7 @@ class SpeechRecognitionManager: NSObject, ObservableObject {
 
         let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(.playAndRecord, mode: .default, options: .duckOthers)
+        try audioSession.overrideOutputAudioPort(.speaker)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
 
         isRecognizing = true

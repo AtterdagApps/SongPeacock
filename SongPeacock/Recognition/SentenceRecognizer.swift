@@ -1,11 +1,12 @@
+import Combine
 import Speech
 
 class SentenceRecognizer: NSObject, ObservableObject {
-    @Published private(set) var currentRecognition: String?
-    @Published private(set) var finalRecognition: String?
+    let recognition = CurrentValueSubject<String?, Never>(nil)
     private let audioEngine: AVAudioEngine
     private let speechRecognizer: SFSpeechRecognizer
     private var recognitionTask: SFSpeechRecognitionTask?
+    private var hasFinished = false
 
     init(audioEngine: AVAudioEngine) {
         self.audioEngine = audioEngine
@@ -18,6 +19,7 @@ class SentenceRecognizer: NSObject, ObservableObject {
         recognitionRequest.shouldReportPartialResults = true
         recognitionRequest.taskHint = .dictation
 
+        print("----- new sentence -----")
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, delegate: self)
 
         let format = audioEngine.inputNode.outputFormat(forBus: 0)
@@ -30,23 +32,16 @@ class SentenceRecognizer: NSObject, ObservableObject {
         }
         audioEngine.attach(sinkNode)
         audioEngine.connect(audioEngine.inputNode, to: sinkNode, format: nil)
-        
+
         audioEngine.prepare()
         try! audioEngine.start()
     }
 }
 
 extension SentenceRecognizer: SFSpeechRecognitionTaskDelegate {
-    func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) {
-        print("speechRecognitionTask:didFinishSuccessfully: ", successfully)
-        recognitionTask = nil
-        if let currentRecognition, !successfully {
-            finalRecognition = currentRecognition
-        }
-    }
-
     func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
-        currentRecognition = transcription.formattedString
-        print("speechRecognitionTask:didHypothesizeTranscription: ", transcription.formattedString)
+        guard !hasFinished else { return }
+        recognition.send(transcription.formattedString)
+        print("recognition: ", transcription.formattedString)
     }
 }
