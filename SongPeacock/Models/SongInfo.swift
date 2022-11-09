@@ -7,23 +7,9 @@ struct SongInfo {
 
     struct Lyrics {
         let sentences: [Sentence]
-        var lines: [Line] { sentences.flatMap(\.lines) }
     }
 
     struct Sentence: Identifiable {
-        let id = UUID()
-        let lines: [Line]
-        
-        init(lines: [Line]) {
-            self.lines = lines
-        }
-        
-        init(text: String, timestamp: TimeInterval) {
-            lines = [.init(text: text, timestamp: timestamp)]
-        }
-    }
-
-    struct Line: Identifiable {
         let id = UUID()
         let text: String
         let timestamp: TimeInterval
@@ -65,22 +51,21 @@ enum Songs {
 //    ]))
     static let iWantItThatWay = SongInfo(artist: "Backstreet Boys", title: "I Want It That Way", lyrics: .init(sentences: [
         .init(text: "Yeah", timestamp: 2),
-        .init(lines: [.init(text: "You are my fire", timestamp: 8)]),
-        .init(lines: [.init(text: "The one desire", timestamp: 14)]),
-        .init(lines: [.init(text: "Believe", timestamp: 19),
-                      .init(text: "When I say", timestamp: 21)]),
-        .init(lines: [.init(text: "I want it that way", timestamp: 24)]),
-        .init(lines: [.init(text: "But we are", timestamp: 28), .init(text:"two worlds apart", timestamp: 32)]),
-        .init(lines: [.init(text: "Can't reach to your heart", timestamp: 35)]),
-        .init(lines: [.init(text: "When you say", timestamp: 40)]),
-        .init(lines: [.init(text: "That I want it that way", timestamp: 43)]),
-        .init(lines: [.init(text: "Tell me why", timestamp: 47)]),
-        .init(lines: [.init(text: "Ain't nothin' but a heartache", timestamp: 49)]),
-        .init(lines: [.init(text: "Tell me why", timestamp: 52)]),
-        .init(lines: [.init(text: "Ain't nothin' but a mistake", timestamp: 54)]),
-        .init(lines: [.init(text: "Tell me why", timestamp: 58), .init(text:"I never wanna hear you say", timestamp: 60)]),
-        .init(lines: [.init(text: "I want it that way", timestamp: 63)]),
-//        .init(lines: [.init(text: "", timestamp: 0)]),
+        .init(text: "You are my fire", timestamp: 8),
+        .init(text: "The one desire", timestamp: 14),
+        .init(text: "Believe when I say", timestamp: 19),
+        .init(text: "I want it that way", timestamp: 24),
+        .init(text: "But we are two worlds apart", timestamp: 28),
+        .init(text: "Can't reach to your heart", timestamp: 35),
+        .init(text: "When you say", timestamp: 40),
+        .init(text: "That I want it that way", timestamp: 43),
+        .init(text: "Tell me why", timestamp: 47),
+        .init(text: "Ain't nothin' but a heartache", timestamp: 49),
+        .init(text: "Tell me why", timestamp: 52),
+        .init(text: "Ain't nothin' but a mistake", timestamp: 54),
+        .init(text: "Tell me why I never wanna hear you say", timestamp: 58),
+        .init(text: "I want it that way", timestamp: 63),
+//        .init(text: "", timestamp: 0)]),
         
 //        Am I your fire?
 //        Your one desire?

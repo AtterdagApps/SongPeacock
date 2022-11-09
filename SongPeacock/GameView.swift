@@ -7,19 +7,19 @@ struct GameView: View {
     var body: some View {
         VStack {
             if gameEngine.running {
-                ForEach(gameEngine.previousLines) { line in
+                ForEach(gameEngine.previousSentences) { sentence in
                     VStack {
-                        Text(line.realLine.text)
+                        Text(sentence.realSentence.text)
                             .foregroundColor(.secondary)
-                        Text(line.recognizedText ?? "")
+                        Text(sentence.recognizedText ?? "")
                             .fontWeight(.bold)
                     }
                     .font(.system(size: 24))
                     .padding(8)
                 }
-                Text(gameEngine.currentLine.realLine.text)
+                Text(gameEngine.currentSentence.realSentence.text)
                     .font(.system(size: 32))
-                Text(gameEngine.currentLine.recognizedText ?? "")
+                Text(gameEngine.currentSentence.recognizedText ?? "")
                     .font(.system(size: 32))
                     .fontWeight(.bold)
                 Spacer()
@@ -46,22 +46,22 @@ struct GameView: View {
 }
 
 class GameEngine: ObservableObject {
-    @Published private(set) var currentLine: RecognizableLine
-    @Published private(set) var previousLines: [RecognizableLine] = []
+    @Published private(set) var currentSentence: RecognizableSentence
+    @Published private(set) var previousSentences: [RecognizableSentence] = []
     @Published private(set) var running = false
     let song: SongInfo
 
     init(song: SongInfo) {
         self.song = song
-        currentLine = .init(realLine: song.lyrics.lines.first!)
+        currentSentence = .init(realSentence: song.lyrics.sentences.first!)
     }
 
     @MainActor
     func startGame() async throws {
-        let musicAuthorizationStatus = await MusicAuthorization.request()
+        _ = await MusicAuthorization.request()
+        #warning("👻 Handle denied authorization")
         let searchRequest = MusicCatalogResourceRequest<Song>(matching: \.id, equalTo: "283567164")
         let searchResponse = try await searchRequest.response()
-        print(searchResponse)
         let musicPlayer = ApplicationMusicPlayer.shared
         musicPlayer.queue = [searchResponse.items.first!]
         try await musicPlayer.prepareToPlay()
@@ -69,9 +69,9 @@ class GameEngine: ObservableObject {
         running = true
     }
 
-    struct RecognizableLine: Identifiable {
-        var id: UUID { realLine.id }
-        let realLine: SongInfo.Line
+    struct RecognizableSentence: Identifiable {
+        var id: UUID { realSentence.id }
+        let realSentence: SongInfo.Sentence
         var recognizedText: String?
     }
 }
@@ -79,12 +79,12 @@ class GameEngine: ObservableObject {
 extension GameEngine {
     static func forPreview(song: SongInfo) -> GameEngine {
         let gameEngine = GameEngine(song: song)
-        gameEngine.currentLine = .init(realLine: song.lyrics.lines[3])
-        var recognizableLines = [RecognizableLine]()
-        recognizableLines.append(.init(realLine: song.lyrics.lines[0], recognizedText: "Imagine there is a heaven"))
-        recognizableLines.append(.init(realLine: song.lyrics.lines[1], recognizedText: "It is easy if you try"))
-        recognizableLines.append(.init(realLine: song.lyrics.lines[2], recognizedText: "No shell below us"))
-        gameEngine.previousLines = recognizableLines
+        gameEngine.currentSentence = .init(realSentence: song.lyrics.sentences[3])
+        var recognizableSentences = [RecognizableSentence]()
+        recognizableSentences.append(.init(realSentence: song.lyrics.sentences[0], recognizedText: "Imagine there is a heaven"))
+        recognizableSentences.append(.init(realSentence: song.lyrics.sentences[1], recognizedText: "It is easy if you try"))
+        recognizableSentences.append(.init(realSentence: song.lyrics.sentences[2], recognizedText: "No shell below us"))
+        gameEngine.previousSentences = recognizableSentences
         return gameEngine
     }
 }
